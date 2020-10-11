@@ -16,6 +16,10 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('TeacherLogin')}}">بوابة المعلم</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('register')}}">تسجيل جديد</a>
+          </li>
+
         </ul>
       </div>
     </div>
