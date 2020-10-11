@@ -1,5 +1,5 @@
 <p align="center"><a href="https://t.me/OmarXtream" target="_blank"><img src="https://i.imgur.com/1yKA53n.png"></a></p>
 <p align="center">
-E-School Project , Developed By OmarXtream
+E-School Project , Developed By OmarXtream<br>
 Telegram , Instagram : @OmarXtream
 </p>
