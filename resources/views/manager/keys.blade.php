@@ -18,18 +18,18 @@
                       <th scope="col">#</th>
                       <th scope="col">المفتاح</th>
                       <th scope="col">تاريخ الإنشاء</th>
-                      <th scope="col">عدد الطلبة</th>
+                      <th scope="col">عدد الطلاب</th>
                       <th scope="col">-</th>
                     </tr>
                   </thead>
                   <tbody>
                     @forelse ($keys as $key)
-                    <tr>
+                    <tr id="k-{{$key->id}}">
                     <th scope="row">{{$key->id}}</th>
                       <td>{{$key->key}}</td>
                       <td>{{$key->created_at}}</td>
                       <td>{{$key->students->count()}}</td>
-                      <td> <a href="{{route('keys.delete',$key -> id)}}" class="btn btn-danger text-white">حذف </a> </td>
+                      <td> <button onclick="DeleteKey({{$key -> id}})" class="btn btn-danger text-white">حذف </button> </td>
                     </tr>
                     @empty
                     <p>لا يوجد مفاتيح حالياً</p>
@@ -76,21 +76,52 @@ function CreateKey(){
 
 sendData(' {{route('keys.create')}}' , form.serialize())
     .then(function(response) {
-        swal.fire({
-            title: response.errors.key,
-            text: response.message,
-            type: response.tp,
+        $.each(response.m,function(key,val) {
+            swal.fire({
+            title: response.t,
+            text: val[0],
+            icon: response.tp,
             showConfirmButton: response.b,
-            confirmButtonText: 'موافق'
+            confirmButtonText: 'حسناً'
         });
+
+            });
         if (response.tp == 'success') {
-            console.log('success');
+            $('#createUsingModal').modal('hide');
+            $('#KeyForm')[0].reset();
+
+            console.log('Key Created Successfuly');
 
         }
 
 
     });
     }
+
+
+    function DeleteKey(id){
+
+    sendData("{{route('keys.delete')}}","id="+id)
+    .then(function(response)
+    {
+        $.each(response.m,function(key,val) {
+
+    new toast({
+        icon: response.tp,
+        title: val[0]
+    });
+
+     if(response.tp == 'success')
+    {
+        $('#k-'+id).remove();
+        console.log('Key Removed Successfuly');
+
+    }
+    });
+
+    });
+}
+
 
 </script>
 @endsection

@@ -56,3 +56,9 @@ if (window.XMLHttpRequest) {
 } else {
 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
+const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+   });
