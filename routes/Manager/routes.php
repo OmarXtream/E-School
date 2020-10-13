@@ -10,9 +10,23 @@ Route::group(['namespace' => 'Manager','prefix' => 'manager'],function(){
 
 
 Route::group(['middleware' => ['assign.guard:manager']],function(){
-    Route::get('/',function(){
-        return view('manager.home');
-        });
+
+########## Start Teacher's Routes
+
+    Route::get('/','TeacherController@index')->name('teacher.index');
+    Route::post('TeacherCreate','TeacherController@store')->name("teacher.create");
+    Route::post('Teacherdelete','TeacherController@destroy')->name("teacher.delete");
+
+########## End Teacher's Routes
+
+########## Start Student's Routes
+
+Route::get('students','StudentController@index')->name('student.index');
+// Route::post('StudentCreate','StudentController@store')->name("student.create");
+// Route::post('Teacherdelete','StudentController@destroy')->name("student.delete");
+
+########## End Student's Routes
+
 
 ########## Start Keys Routes
 

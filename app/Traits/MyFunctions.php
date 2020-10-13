@@ -23,4 +23,18 @@ Trait MyFunctions
         ];
     }
 
+    function CheckandJS(){
+        $validator = Validator::make($request->all(), [
+            'key' => 'bail|required|string|unique:keys,key|max:30'
+        ]);
+
+        if ($validator->fails()) {
+            $response = $this->RespError($validator->errors());
+            return json($response);
+        }else{
+            return false;
+        }
+
+    }
+
 }

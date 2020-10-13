@@ -21,24 +21,26 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">المدرس</th>
+                      <th scope="col">المعلم</th>
+                      <th scope="col">الإيميل</th>
                       <th scope="col">المستوى</th>
                       <th scope="col">-</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>حمد محمد</td>
-                      <td>المستوى 1</td>
-                      <td>حذف - تعديل</td>
+                    @forelse ($teachers as $teacher)
+                    <tr id="t-{{$teacher->id}}">
+                    <th scope="row">{{$teacher->id}}</th>
+                    <td>{{$teacher->name}}</td>
+                    <td>{{$teacher->email}}</td>
+                    <td>{{$teacher->level}}</td>
+                    <td> <button onclick="DeleteKey({{$teacher -> id}})" class="btn btn-danger text-white">حذف </button> </td>
                     </tr>
+                    @empty
+                    <p>لا يوجد معلمين مسجلين</p>
+                    @endforelse
+
                     <tr>
-                      <th scope="row">2</th>
-                      <td>أحمد محمد</td>
-                      <td>المستوى 2</td>
-                      <td>حذف - تعديل</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -58,8 +60,8 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST">
-                <div class="form-row">
+                <form id="TForm" onsubmit="return false;">
+                    <div class="form-row">
                   <div class="col-12 mb-3">
                     <label for="name">الإسم</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="حمد محمد" required>
@@ -86,7 +88,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-              <button type="button" class="btn btn-primary">إنشاء</button>
+              <button type="button" class="btn btn-primary" onclick="CreateT()">إنشاء</button>
             </div>
           </div>
         </div>
@@ -94,3 +96,60 @@
 
 @endsection
 
+@section('scripts')
+<script>
+
+function CreateT(){
+    var form = $('#TForm');
+
+sendData(' {{route('teacher.create')}}' , form.serialize())
+    .then(function(response) {
+        $.each(response.m,function(key,val) {
+            swal.fire({
+            title: response.t,
+            text: val[0],
+            icon: response.tp,
+            showConfirmButton: response.b,
+            confirmButtonText: 'حسناً'
+        });
+
+            });
+        if (response.tp == 'success') {
+            $('#createUsingModal').modal('hide');
+            $('#TForm')[0].reset();
+
+            console.log('Teacher Created Successfuly');
+
+        }
+
+
+    });
+    }
+
+
+    function DeleteKey(id){
+
+    sendData("{{route('teacher.delete')}}","id="+id)
+    .then(function(response)
+    {
+        $.each(response.m,function(key,val) {
+
+    new toast({
+        icon: response.tp,
+        title: val[0]
+    });
+
+     if(response.tp == 'success')
+    {
+        $('#t-'+id).remove();
+        console.log('teacher Removed Successfuly');
+
+    }
+    });
+
+    });
+}
+
+
+</script>
+@endsection

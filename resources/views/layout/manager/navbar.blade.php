@@ -20,10 +20,10 @@
                                     </form>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">المدرسين</a>
+            <a class="nav-link" href="{{route('teacher.index')}}">المدرسين</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">الطلبة</a>
+            <a class="nav-link" href="{{route('student.index')}}">الطلبة</a>
           </li>
           <li class="nav-item">
           <a class="nav-link" href="{{route('keys.index')}}">مفاتيح التسجيل</a>
