@@ -16,7 +16,7 @@ class CreateKeysTable extends Migration
         Schema::create('keys', function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique();
-            $table->timestamps();
+            $table->datetime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->index('key');
 
         });

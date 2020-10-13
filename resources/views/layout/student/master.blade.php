@@ -1,7 +1,10 @@
 
 @include('layout.header')
 
-@include('layout.navbar')
+
+@include('layout.student.navbar')
+
+
 
 @yield('content')
 

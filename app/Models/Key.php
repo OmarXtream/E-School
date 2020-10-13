@@ -9,6 +9,11 @@ class Key extends Model
 {
     use HasFactory;
     protected $fillable = ['key'];
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at'];
+    public $timestamps = false;
 
+
+    public function students(){
+        return $this->hasMany('App\Models\User','key','key');
+    }
 }

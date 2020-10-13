@@ -26,7 +26,7 @@
             <a class="nav-link" href="#">الطلبة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">مفاتيح التسجيل</a>
+          <a class="nav-link" href="{{route('keys.index')}}">مفاتيح التسجيل</a>
           </li>
         </ul>
       </div>

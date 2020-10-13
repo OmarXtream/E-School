@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.student.master')
 @section('content')
 
 @if (session('status'))

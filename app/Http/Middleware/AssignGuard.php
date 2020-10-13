@@ -17,6 +17,14 @@ class AssignGuard
      */
     public function handle($request, Closure $next,$guard = null ,$redirect_to = "/login")
     {
+        if($guard == 'manager'){
+            $redirect_to = 'manager/login';
+        }elseif($guard == 'teacher'){
+            $redirect_to = 'teacher/login';
+        }else{
+            $redirect_to = "/login";
+        }
+
         if (!Auth::guard($guard)->check())
         return redirect($redirect_to);
 

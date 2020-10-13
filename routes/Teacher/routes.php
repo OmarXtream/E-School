@@ -9,7 +9,7 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher'],function(){
 
 
 
-Route::group(['middleware' => ['assign.guard:teacher,teacher/login']],function(){
+Route::group(['middleware' => ['assign.guard:teacher']],function(){
     Route::get('/',function(){
         return view('teacher.home');
         });
