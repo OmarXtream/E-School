@@ -47,25 +47,25 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                                <form id="UpdateT" onsubmit="return false;">
+                                <form id="UpdateT-{{$teacher->id}}" onsubmit="return false;">
                                     <input type="hidden" name="id" value="{{$teacher->id}}" required>
                                     <div class="form-row">
                                   <div class="col-12 mb-3">
                                     <label for="name">الإسم</label>
-                                  <input type="text" name="name" id="name" class="form-control" placeholder="حمد محمد" value="{{$teacher->name}}" required>
+                                  <input type="text" name="name" class="form-control" placeholder="حمد محمد" value="{{$teacher->name}}" required>
                                   </div>
                                   <div class="col-12 mb-3">
                                     <label for="whatsapp">واتساب</label>
-                                    <input type="number" name="whatsapp" id="whatsapp" class="form-control" placeholder="+966" value="{{$teacher->whatsapp}}" required>
+                                    <input type="number" name="whatsapp" class="form-control" placeholder="+966" value="{{$teacher->whatsapp}}" required>
                                   </div>
                                   <div class="col-12 mb-3">
                                     <label for="instagram">إنستقرام</label>
-                                    <input type="text" name="instagram" id="instagram" class="form-control" placeholder="instagram" value="{{$teacher->instagram}}" required>
+                                    <input type="text" name="instagram" class="form-control" placeholder="instagram" value="{{$teacher->instagram}}" required>
                                   </div>
 
                                   <div class="col-12 mb-3">
                                     <label for="level">المستوى</label>
-                                    <select name="level" id="level" class="form-control">
+                                    <select name="level" class="form-control">
                                       <option value="0" disabled>قم بإختيار المستوى</option>
                                       <option value="1" {{$teacher->level == 1 ? 'selected' : ''}}>المستوى 1</option>
                                       <option value="2" {{$teacher->level == 2 ? 'selected' : ''}}>المستوى 2</option>
@@ -193,7 +193,7 @@ sendData(' {{route('teacher.create')}}' , form.serialize())
     }
 
     function UpdateT(id){
-        var form2 = $('#UpdateT');
+        var form2 = $('#UpdateT-'+id);
 
 sendData(' {{route('teacher.update')}}' , form2.serialize())
     .then(function(response) {
