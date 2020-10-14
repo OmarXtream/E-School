@@ -14,6 +14,8 @@ class Teacher extends Authenticatable
         'name',
         'email',
         'password',
+        'instagram',
+        'whatsapp',
         'level'
     ];
 

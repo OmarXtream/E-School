@@ -29,10 +29,18 @@
                     <th scope="row">{{$student->id}}</th>
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
-                    <td>{{$student->level}}</td>
+                    <td id="level-{{$student->id}}">{{$student->level}}</td>
                     <td> 0</td>
 
-                    <td> <button onclick="downgrade({{$student -> id}})" class="btn btn-danger text-white">خفض </button> <button onclick="upgrade({{$student -> id}},)" class="btn btn-success text-white">ترقية </button> </td>
+                    <td id="levelbtn-{{$student->id}}">
+                        @if($student->level > 1)
+                        <button onclick="Level({{$student -> id}},{{$student -> level - 1}})" class="btn btn-danger text-white"> <i class="fa fa-arrow-down" aria-hidden="true"></i> خفض </button>
+                        @endif
+                        @if($student->level < 3)
+                        <button onclick="Level({{$student -> id}},{{$student -> level + 1}})" class="btn btn-success text-white"><i class="fa fa-level-up" aria-hidden="true"></i> ترقية </button>
+                        @endif
+
+                    </td>
                     </tr>
                     @empty
                     <p>لا يوجد طلاب مسجلين</p>
@@ -51,26 +59,35 @@
 @section('scripts')
 <script>
 
-function CreateKey(){
-    var form = $('#KeyForm');
+function Level(id,level){
+if(level > 3){
+    new toast({
+        icon: 'info',
+        title: 'عذراً المستوى الأقصى 3'
+            });
 
-sendData(' {{route('keys.create')}}' , form.serialize())
+}else if(level < 1){
+    new toast({
+        icon: 'info',
+        title: 'عذراً المستوى الأدنى 1'
+            });
+
+}
+
+sendData(' {{route('student.level')}}' ,"id="+id+"&level="+level)
     .then(function(response) {
         $.each(response.m,function(key,val) {
-            swal.fire({
-            title: response.t,
-            text: val[0],
-            icon: response.tp,
-            showConfirmButton: response.b,
-            confirmButtonText: 'حسناً'
-        });
+            new toast({
+                icon: response.tp,
+                title: val[0]
+            });
 
             });
         if (response.tp == 'success') {
-            $('#createUsingModal').modal('hide');
-            $('#KeyForm')[0].reset();
+            $("#level-"+id).html(level);
+            $("#levelbtn-"+id).html('<p class="text-info"> مُحدث </p>');
 
-            console.log('Key Created Successfuly');
+            console.log('Student Level changed Successfuly');
 
         }
 
@@ -79,28 +96,6 @@ sendData(' {{route('keys.create')}}' , form.serialize())
     }
 
 
-    function DeleteKey(id){
-
-    sendData("{{route('keys.delete')}}","id="+id)
-    .then(function(response)
-    {
-        $.each(response.m,function(key,val) {
-
-    new toast({
-        icon: response.tp,
-        title: val[0]
-    });
-
-     if(response.tp == 'success')
-    {
-        $('#k-'+id).remove();
-        console.log('Key Removed Successfuly');
-
-    }
-    });
-
-    });
-}
 
 
 </script>

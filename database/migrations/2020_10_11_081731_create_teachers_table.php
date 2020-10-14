@@ -18,6 +18,8 @@ class CreateTeachersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('whatsapp','30');
+            $table->string('instagram','30');
             $table->tinyInteger('level')->comment('three Levels')->default(1)->index();
             $table->timestamps();
         });

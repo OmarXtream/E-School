@@ -20,13 +20,13 @@
                                     </form>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{route('teacher.index')}}">المدرسين</a>
+            <a class="nav-link" href="{{route('teacher.index')}}"><i class="fas fa-graduation-cap"></i> المدرسين </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('student.index')}}">الطلبة</a>
+            <a class="nav-link" href="{{route('student.index')}}"><i class="fas fa-users-class"></i> الطلاب</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="{{route('keys.index')}}">مفاتيح التسجيل</a>
+          <a class="nav-link" href="{{route('keys.index')}}"><i class="fas fa-key"></i> مفاتيح التسجيل</a>
           </li>
         </ul>
       </div>

@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-12 mb-2">
-              <button class="text-white btn btn-primary d-inlin-block mb-3" data-toggle="modal" data-target="#createUsingModal">إنشاء مفتاح</button>
+              <button class="text-white btn btn-primary d-inlin-block mb-3" data-toggle="modal" data-target="#createUsingModal"><i class="fas fa-key"></i> إنشاء مفتاح</button>
               <div class="table-responive">
                 <table class="table table-striped text-center table-hover">
                   <thead>
@@ -29,7 +29,7 @@
                       <td>{{$key->key}}</td>
                       <td>{{$key->created_at}}</td>
                       <td>{{$key->students->count()}}</td>
-                      <td> <button onclick="DeleteKey({{$key -> id}})" class="btn btn-danger text-white">حذف </button> </td>
+                      <td> <button onclick="DeleteKey({{$key -> id}})" class="btn btn-danger text-white"><i class="fa fa-times"></i> حذف </button> </td>
                     </tr>
                     @empty
                     <p>لا يوجد مفاتيح حالياً</p>
@@ -47,7 +47,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="createUsingModalTitle">إنشاء مفتاح</h5>
+              <h5 class="modal-title" id="createUsingModalTitle"><i class="fas fa-key"></i> إنشاء مفتاح</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -100,6 +100,17 @@ sendData(' {{route('keys.create')}}' , form.serialize())
 
 
     function DeleteKey(id){
+        swal.fire({
+                title: 'هل انت متأكد؟',
+                text: "سوف يتم حذف البيانات ولا يمكن إسترجاعها",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'تراجع',
+                confirmButtonText: 'تأكيد'
+            }).then((result) => {
+                if (result.value) {
 
     sendData("{{route('keys.delete')}}","id="+id)
     .then(function(response)
@@ -120,6 +131,10 @@ sendData(' {{route('keys.create')}}' , form.serialize())
     });
 
     });
+
+}
+        });
+
 }
 
 

@@ -16,14 +16,14 @@ Route::group(['middleware' => ['assign.guard:manager']],function(){
     Route::get('/','TeacherController@index')->name('teacher.index');
     Route::post('TeacherCreate','TeacherController@store')->name("teacher.create");
     Route::post('Teacherdelete','TeacherController@destroy')->name("teacher.delete");
+    Route::post('TeacherUpdate','TeacherController@update')->name("teacher.update");
 
 ########## End Teacher's Routes
 
 ########## Start Student's Routes
 
 Route::get('students','StudentController@index')->name('student.index');
-// Route::post('StudentCreate','StudentController@store')->name("student.create");
-// Route::post('Teacherdelete','StudentController@destroy')->name("student.delete");
+Route::post('StudentLevel','StudentController@level')->name("student.level");
 
 ########## End Student's Routes
 
