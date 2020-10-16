@@ -124,7 +124,9 @@ sendData(' {{route('keys.create')}}' , form.serialize())
 
      if(response.tp == 'success')
     {
-        $('#k-'+id).remove();
+        animateCSS('#k-'+id, 'flash').then((message) => {
+            $('#k-'+id).remove();
+            });
         console.log('Key Removed Successfuly');
 
     }

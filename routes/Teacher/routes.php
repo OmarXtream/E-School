@@ -10,9 +10,12 @@ Route::group(['namespace' => 'Teacher','prefix' => 'teacher'],function(){
 
 
 Route::group(['middleware' => ['assign.guard:teacher']],function(){
-    Route::get('/',function(){
-        return view('teacher.home');
-        });
+
+######### Start Students Section
+    Route::get('/','StudentController@index');
+    Route::post('TStudent','StudentController@level')->name("Tstudent.level");
+
+######### End Students Section
 
 
 });

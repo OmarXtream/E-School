@@ -84,8 +84,10 @@ sendData(' {{route('student.level')}}' ,"id="+id+"&level="+level)
 
             });
         if (response.tp == 'success') {
+            animateCSS('#t-'+id, 'heartBeat').then((message) => {
             $("#level-"+id).html(level);
             $("#levelbtn-"+id).html('<p class="text-info"> مُحدث </p>');
+            });
 
             console.log('Student Level changed Successfuly');
 

@@ -243,7 +243,9 @@ sendData(' {{route('teacher.update')}}' , form2.serialize())
 
      if(response.tp == 'success')
     {
-        $('#t-'+id).remove();
+        animateCSS('#t-'+id, 'fadeOutUp').then((message) => {
+            $('#t-'+id).remove();
+            });
         console.log('teacher Removed Successfuly');
 
     }

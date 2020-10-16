@@ -18,26 +18,34 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">الطالب</th>
+                      <th scope="col">الإيميل</th>
                       <th scope="col">المستوى</th>
                       <th scope="col">مجموع الدرجات</th>
                       <th scope="col">-</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>حمد محمد</td>
-                      <td>المستوى 1</td>
-                      <td>200</td>
-                      <td>ترقية - إخفاض</td>
+                    @forelse ($students as $student)
+                    <tr id="t-{{$student->id}}">
+                    <th scope="row">{{$student->id}}</th>
+                    <td>{{$student->name}}</td>
+                    <td>{{$student->email}}</td>
+                    <td id="level-{{$student->id}}">{{$student->level}}</td>
+                    <td> 0</td>
+
+                    <td id="levelbtn-{{$student->id}}">
+                        @if($student->level > 1)
+                        <button onclick="Level({{$student -> id}},{{$student -> level - 1}})" class="btn btn-danger text-white"> <i class="fa fa-arrow-down" aria-hidden="true"></i> خفض </button>
+                        @endif
+                        @if($student->level < 3)
+                        <button onclick="Level({{$student -> id}},{{$student -> level + 1}})" class="btn btn-success text-white"><i class="fa fa-level-up" aria-hidden="true"></i> ترقية </button>
+                        @endif
+
+                    </td>
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>أحمد محمد</td>
-                      <td>المستوى 2</td>
-                      <td>150</td>
-                      <td>ترقية - إخفاض</td>
-                    </tr>
+                    @empty
+                    <p>لا يوجد طلاب مسجلين</p>
+                    @endforelse
                   </tbody>
                 </table>
               </div>
@@ -48,3 +56,48 @@
 
 @endsection
 
+@section('scripts')
+<script>
+
+function Level(id,level){
+if(level > 3){
+    new toast({
+        icon: 'info',
+        title: 'عذراً المستوى الأقصى 3'
+            });
+
+}else if(level < 1){
+    new toast({
+        icon: 'info',
+        title: 'عذراً المستوى الأدنى 1'
+            });
+
+}
+
+sendData(' {{route('Tstudent.level')}}' ,"id="+id+"&level="+level)
+    .then(function(response) {
+        $.each(response.m,function(key,val) {
+            new toast({
+                icon: response.tp,
+                title: val[0]
+            });
+
+            });
+        if (response.tp == 'success') {
+            animateCSS('#t-'+id, 'rollOut').then((message) => {
+                $("#t-"+id).remove();
+            });
+
+            console.log('Student Level changed Successfuly');
+
+        }
+
+
+    });
+    }
+
+
+
+
+</script>
+@endsection
