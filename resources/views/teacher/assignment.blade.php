@@ -8,13 +8,14 @@
             </div>
 
             <div class="col-12 mb-2">
-              <button class="text-white btn btn-primary d-inlin-block mb-3" data-toggle="modal" data-target="#createUsingModal">إنشاء</button>
+              <button class="text-white btn btn-primary d-inlin-block mb-3" data-toggle="modal" data-target="#createUsingModal"><i class="fas fa-book-open"></i> إنشاء</button>
               <div class="table-responive">
                 <table class="table table-striped text-center table-hover">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">الإسم</th>
+                      <th scope="col">المُعلم</th>
+                      <th scope="col">العنوان</th>
                       <th scope="col">النوع</th>
                       <th scope="col">المرفقات</th>
                       <th scope="col">-</th>
@@ -24,16 +25,19 @@
                     @forelse ($Assignments as $assignment)
                     <tr id="a-{{$assignment->id}}">
                             <th scope="row">{{$assignment->id}}</th>
+                            <td>{{$assignment->teacher->name}}</td>
                             <td>{{$assignment->name}}</td>
                             <td>{{$assignment->type == 1 ? 'واجب' : 'شرح'}}</td>
                             <td>
                                 <?php $count = 1; ?>
-
+                                @if ($assignment->files != "null")
                                 @foreach (json_decode($assignment->files) as $file)
                                 <a href="{{route('download.assignment',$file)}}" target="_blank">{{$assignment->name}} - {{$count++}} </a><br>
-
                                 @endforeach
-                                {{-- {{ json_decode($assignment->files) }} --}}
+
+                                @else
+                                <p>لا يوجد</p>
+                                @endif
                             </td>
                             <td> <button onclick="DeleteA({{$assignment -> id}})" class="btn btn-danger text-white"><i class="fa fa-times"></i> حذف </button></td>
                      </tr>
@@ -63,7 +67,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="createUsingModalTitle">إنشاء واجب / درس</h5>
+              <h5 class="modal-title" id="createUsingModalTitle"><i class="fas fa-book-open"></i> إنشاء واجب / درس</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -150,6 +154,56 @@
             }
         });
     });
+
+
+
+
+
+
+    function DeleteA(id){
+        swal.fire({
+                title: 'هل انت متأكد؟',
+                text: "سوف يتم حذف البيانات ولا يمكن إسترجاعها",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'تراجع',
+                confirmButtonText: 'تأكيد'
+            }).then((result) => {
+                if (result.value) {
+    sendData("{{route('assignment.delete')}}","id="+id)
+    .then(function(response)
+    {
+        $.each(response.m,function(key,val) {
+
+    new toast({
+        icon: response.tp,
+        title: val[0]
+    });
+
+     if(response.tp == 'success')
+    {
+        animateCSS('#a-'+id, 'fadeOutUp').then((message) => {
+            $('#a-'+id).remove();
+            });
+        console.log('Assignment Removed Successfuly');
+
+    }
+    });
+
+    });
+
+            }
+        });
+
+}
+
+
+
+
+
+
 </script>
 
 @endsection

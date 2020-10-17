@@ -20,7 +20,8 @@ Route::group(['middleware' => ['assign.guard:teacher']],function(){
 ######### Start Assignments Section
 Route::get('Assignments','AssignmentController@index')->name('teacher.assignments');
 Route::post('AssignmentCreate','AssignmentController@store')->name("teacher.assignments.create");
-Route::get('assignmentDown/{$file}','AssignmentController@downlaod')->name('download.assignment');
+Route::get('assignmentDown/{file}','AssignmentController@downlaod')->name('download.assignment');
+Route::post('assignmentDel','AssignmentController@destroy')->name("assignment.delete");
 
 ######### End Assignments Section
 
