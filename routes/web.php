@@ -19,4 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+######## Assignments Start
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('homeworks', 'HomeController@homeworks')->name('homeworks');
+Route::get('Assignments/{assignment}-{slug}', 'HomeController@show')->name('lecture.show');
+Route::get('assignmentDown/{file}','HomeController@downlaod')->name('student.download.assignment');
+
+######## Assignments End
+# Start Contact
+Route::get('contact', 'HomeController@contact')->name('contact');
+
+#End Contact
+

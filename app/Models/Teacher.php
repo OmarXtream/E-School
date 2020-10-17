@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Models\Assignment;
 class Teacher extends Authenticatable
 {
     use HasFactory;
@@ -24,5 +24,7 @@ class Teacher extends Authenticatable
         'created_at'
 
     ];
-
+    public function Assignments(){
+        return $this->hasMany(Assignment::class,'teacher_id','id');
+    }
 }

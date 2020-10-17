@@ -20,16 +20,16 @@
                                   </form>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">الدروس</a>
+          <a class="nav-link" href="{{route('home')}}"><i class="fad fa-presentation"></i> الدروس</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">الواجبات</a>
+            <a class="nav-link" href="{{route('homeworks')}}"><i class="fal fa-comment-alt-edit"></i> الواجبات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">الإختبارات</a>
+            <a class="nav-link" href="#"><i class="fal fa-ballot-check"></i> الإختبارات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">تواصل مع المعلم</a>
+          <a class="nav-link" href="{{route('contact')}}"><i class="fal fa-user-graduate"></i> تواصل مع المعلم</a>
           </li>
         </ul>
       </div>
