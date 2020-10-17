@@ -20,13 +20,13 @@
                                     </form>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">الطلبة</a>
+            <a class="nav-link" href="{{route('teacher.students')}}"><i class="fas fa-users-class"></i> الطلاب</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">تفاعلات الطلبة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">شروحات وواجبات</a>
+          <a class="nav-link" href="{{route('teacher.assignments')}}"><i class="fas fa-presentation"></i>  شروحات وواجبات</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">إختبارات</a>
