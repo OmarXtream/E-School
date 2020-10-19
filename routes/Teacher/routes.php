@@ -25,6 +25,12 @@ Route::post('assignmentDel','AssignmentController@destroy')->name("assignment.de
 
 ######### End Assignments Section
 
+######### Start Exams Section
+Route::get('Exams','ExamController@index')->name('teacher.exams');
+Route::post('ExamCreate','ExamController@store')->name("teacher.exam.create");
+
+######### End Exams Section
+
 });
 
 

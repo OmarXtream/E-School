@@ -29,7 +29,7 @@
           <a class="nav-link" href="{{route('teacher.assignments')}}"><i class="fas fa-presentation"></i>  شروحات وواجبات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">إختبارات</a>
+            <a class="nav-link" href="{{route('teacher.exams')}}"><i class="fal fa-ballot-check"></i> إختبارات</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">نماذج الإجابة</a>
