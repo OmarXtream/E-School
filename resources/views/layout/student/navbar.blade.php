@@ -26,7 +26,7 @@
             <a class="nav-link" href="{{route('homeworks')}}"><i class="fal fa-comment-alt-edit"></i> الواجبات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fal fa-ballot-check"></i> الإختبارات</a>
+          <a class="nav-link" href="{{route('Exams')}}"><i class="fal fa-ballot-check"></i> الإختبارات</a>
           </li>
           <li class="nav-item">
           <a class="nav-link" href="{{route('contact')}}"><i class="fal fa-user-graduate"></i> تواصل مع المعلم</a>

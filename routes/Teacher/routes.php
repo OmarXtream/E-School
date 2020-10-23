@@ -28,8 +28,14 @@ Route::post('assignmentDel','AssignmentController@destroy')->name("assignment.de
 ######### Start Exams Section
 Route::get('Exams','ExamController@index')->name('teacher.exams');
 Route::post('ExamCreate','ExamController@store')->name("teacher.exam.create");
-
+Route::post('ExamDel','ExamController@destroy')->name("Exam.delete");
 ######### End Exams Section
+
+######### Start Results Section
+Route::get('Results','AnswerController@index')->name("Exam.results");
+Route::get('Result/{exam}-{slug}', 'AnswerController@show')->name('exam.result.show');
+
+######### End Results Section
 
 });
 

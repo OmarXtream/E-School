@@ -1,3 +1,4 @@
+
 @extends('layout.teacher.master')
 @section('content')
     <!-- page content -->
@@ -15,21 +16,48 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">الإسم</th>
-                      <th scope="col">-</th>
+                      <th scope="col">المُعلم</th>
+                      <th scope="col">العنوان</th>
+                      <th scope="col"> إجراءات </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>إختبار 1</td>
-                      <td>حذف</td>
+
+                    @forelse($exams as $exam)
+                    <?php
+                    $info = json_decode($exam->info, false);
+                    // foreach ($info as $key => $value) {
+                    //     if (Str::startsWith($key, 'text') || Str::startsWith($key, 'radio')|| Str::startsWith($key, 'des')|| Str::startsWith($key, 'input')) {
+                    //         if (!is_array($value)) {
+                    //             print_r($key);
+                    //             echo "<br>";
+                    //             print_r($value);
+                    //             echo "<br> <br> <br>";
+
+                    //         } else {
+                    //             print_r($key);
+                    //             echo "<br>";
+                    //             for ($i=0; $i <= $exam->count+1; $i++) {
+                    //                 print_r( $value[$i] );
+                    //                 echo  " <br> ";
+                    //             }
+                    //         }
+
+                    //     }
+
+
+
+                    // }
+                    ?>
+                    <tr id="e-{{$exam->id}}">
+                        <th scope="row">{{$exam->id}} </th>
+                       <td>{{$exam->teacher->name}}</td>
+                        <td>{{$info->name}}</td>
+                        <td> <button onclick="DeleteE({{$exam->id}})" class="btn btn-danger text-white"><i class="fa fa-times"></i> حذف </button></td>
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>إختبار 2</td>
-                      <td>حذف</td>
-                    </tr>
+                    @empty
+                    <p> لا يوجد إختبارات حالياً </p>
+                    @endforelse
                   </tbody>
                 </table>
               </div>
@@ -61,6 +89,11 @@
                     <label for="des">شرح الإختبار</label>
                     <textarea  name="des" id="des" class="form-control" placeholder="شرح الإختبار هنا.." required></textarea>
                   </div>
+                  <div class="col-12 mb-3">
+                    <label for="grade">درجة الإختبار</label>
+                    <input type="number"  name="grade" id="grade" class="form-control" placeholder="درجة الإختبار" required>
+                  </div>
+
                 </div>
                 <div class="form-row mt-5">
                   <div class="col-12">
@@ -88,8 +121,17 @@
 
 
 $(document).on('click', '#Createbtn', function (e) {
+    if(question < 1){
+        new toast({
+            icon: 'info',
+            title: 'يجب تسجيل سؤال واحد على الأقل'
+                });
+        throw "No questions";
+    }
         e.preventDefault();
         var formData = new FormData($('#EForm')[0]);
+        formData.append('count', question);
+
         $.ajax({
             type: 'post',
             url: "{{route('teacher.exam.create')}}",
@@ -134,47 +176,37 @@ $(document).on('click', '#Createbtn', function (e) {
 
 
 
-
-
-
-
-
-
-
 var question = 0;
 
-var questions = {};
-
-
-console.log(dict);
       function addInputs(kind) {
         question++;
+
         switch (kind) {
           case '0':
             $( "#testForm" ).append(
               '<div class="col-12 mb-3">'
-                + '<label for="q'+ question + '">سؤال '+ question + '</label>'
-                + '<input type="text" name="q'+ question + '" id="q'+ question + '" class="form-control" placeholder="السؤال" required>'
+                + '<label for="input'+ question + '">سؤال '+ question + '</label>'
+                + '<input type="text" name="input'+ question + '" id="q'+ question + '" class="form-control" placeholder="السؤال" required>'
                 + '</div>'
               );
             break;
           case '1':
             $( "#testForm" ).append(
                 '<div class="col-12 mb-3">'
-                  + '<label for="q'+ question + '">سؤال '+ question + '</label>'
-                  + '<textarea name="q'+ question + '" id="q'+ question + '" class="form-control" placeholder="السؤال" required></textarea>'
+                  + '<label for="text'+ question + '">سؤال '+ question + '</label>'
+                  + '<textarea name="text'+ question + '" id="text'+ question + '" class="form-control" placeholder="السؤال" required></textarea>'
                   + '</div>'
                 );
             break;
           case '2':
            $( "#testForm" ).append(
                 '<div class="col-12 mb-3">'
-                  + '<label for="q'+ question + '">سؤال '+ question + '</label>'
-                  + '<input type="text" name="q'+ question + '" id="q'+ question + '" class="form-control mb-2" placeholder="السؤال" required>'
-                  + '<input type="text" name="qa'+ question + '[]" id="q'+ question + '-1" class="form-control mb-2" placeholder="إختياري 1" required>'
-                  + '<input type="text" name="qa'+ question + '[]" id="q'+ question + '-2" class="form-control mb-2" placeholder="إختياري 2" required>'
-                  + '<input type="text" name="qa'+ question + '[]" id="q'+ question + '-3" class="form-control mb-2" placeholder="إختياري 3" required>'
-                  + '<input type="text" name="qa'+ question + '[]" id="q'+ question + '-4" class="form-control mb-2" placeholder="إختياري 4" required>'
+                  + '<label for="radio'+ question + '">سؤال '+ question + '</label>'
+                  + '<input type="text" name="radio'+ question + '[]" id="q'+ question + '" class="form-control mb-2" placeholder="السؤال" required>'
+                  + '<input type="text" name="radio'+ question + '[]" id="q'+ question + '-1" class="form-control mb-2" placeholder="إختياري 1" required>'
+                  + '<input type="text" name="radio'+ question + '[]" id="q'+ question + '-2" class="form-control mb-2" placeholder="إختياري 2" required>'
+                  + '<input type="text" name="radio'+ question + '[]" id="q'+ question + '-3" class="form-control mb-2" placeholder="إختياري 3" required>'
+                  + '<input type="text" name="radio'+ question + '[]" id="q'+ question + '-4" class="form-control mb-2" placeholder="إختياري 4" required>'
                   + '</div>'
                 );
              break;
@@ -182,6 +214,48 @@ console.log(dict);
             break;
         }
       }
+
+
+
+
+      function DeleteE(id){
+        swal.fire({
+                title: 'هل انت متأكد؟',
+                text: "سوف يتم حذف البيانات ولا يمكن إسترجاعها",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'تراجع',
+                confirmButtonText: 'تأكيد'
+            }).then((result) => {
+                if (result.value) {
+    sendData("{{route('Exam.delete')}}","id="+id)
+    .then(function(response)
+    {
+        $.each(response.m,function(key,val) {
+
+    new toast({
+        icon: response.tp,
+        title: val[0]
+    });
+
+     if(response.tp == 'success')
+    {
+        animateCSS('#e-'+id, 'fadeOutUp').then((message) => {
+            $('#e-'+id).remove();
+            });
+        console.log('Assignment Removed Successfuly');
+
+    }
+    });
+
+    });
+
+            }
+        });
+
+}
 
 </script>
 

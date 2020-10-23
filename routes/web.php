@@ -31,3 +31,12 @@ Route::get('contact', 'HomeController@contact')->name('contact');
 
 #End Contact
 
+######## Exam's Start
+Route::get('exams', 'ExamController@exams')->name('Exams');
+Route::get('Exams/{exam}-{slug}', 'ExamController@show')->name('exam.show');
+Route::post('ExamFinsh','ExamController@store')->name("student.exam.store");
+
+
+######## Exam's End
+
+

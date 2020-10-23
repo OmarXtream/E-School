@@ -64,7 +64,7 @@ class AssignmentController extends Controller
             'files' => $files,
             'teacher_id' => Auth::user()->id
             ]);
-            if ($assignment)
+            if ($assignment->save())
             return response()->json([
                 'status' => true,
                 'msg' => 'تم إنشاء المحتوى بنجاح',

@@ -47,4 +47,6 @@ class User extends Authenticatable
         'level' => 1,
     ];
 
+
+
 }

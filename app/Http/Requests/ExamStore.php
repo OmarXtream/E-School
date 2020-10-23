@@ -26,7 +26,9 @@ class ExamStore extends FormRequest
         return [
             'name' => 'bail|required|string|max:50',
             'des' => 'bail|required|string',
-            'q1' => 'bail|required|string',
+            'grade' => 'bail|required|numeric',
+            'count' => 'bail|required|numeric',
+
 
         ];
     }

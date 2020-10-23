@@ -37,4 +37,18 @@ Trait MyFunctions
 
     }
 
+    function in_array_strpos($word, $array){
+
+        foreach($array as $a){
+
+            if (strpos($word,$a) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+        }
+
+
+
 }
