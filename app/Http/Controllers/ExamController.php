@@ -18,15 +18,11 @@ class ExamController extends Controller
     }
 
     public function exams(){
-        $exams = Exam::select('id','info')->where(['level' => Auth::user()->level])->get();
+        $userId = Auth::user()->id;
+         $exams = Exam::select('id','info')->where(['level' => Auth::user()->level])->whereDoesntHave("answers", function($subQuery) use($userId){
+          $subQuery->where("user_id", "=", $userId);
+        })->get();
 
-
-        // $exams = Exam::select('id','info')->whereNotExists(function($query)
-        // {
-        //     $query->select(Exam::raw(1))
-        //           ->from('results')
-        //           ->whereRaw('results.id = result.user_id');
-        // })->where(['level' => Auth::user()->level])->get();
 
 
            return view('student.exams',compact('exams'));

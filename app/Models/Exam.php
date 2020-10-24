@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Teacher;
 use App\Models\Answer;
+use App\Models\User;
 use Illuminate\Support\Str;
-
+use Auth;
 class Exam extends Model
 {
     use HasFactory;
@@ -39,5 +40,12 @@ class Exam extends Model
         return $this->hasMany(Answer::class);
 
     }
+
+    public function students(){
+        return $this->hasManyThrough(Answer::class,User::class);
+
+    }
+
+
 
 }
