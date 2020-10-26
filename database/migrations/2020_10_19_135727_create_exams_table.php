@@ -16,7 +16,10 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('level')->comment('three Levels')->index();
-            $table->integer('teacher_id')->unsigned();
+            $table->unsignedBigInteger('teacher_id');
+            $table->foreign('teacher_id')
+            ->references('id')->on('teachers')
+            ->onDelete('cascade');
             $table->integer('count');
             $table->json('info');
 

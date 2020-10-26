@@ -15,7 +15,11 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->integer('exam_id')->unsigned()->index();
+            $table->unsignedBigInteger('exam_id')->index();
+            $table->foreign('exam_id')
+            ->references('id')->on('exams')
+            ->onDelete('cascade');
+
             $table->integer('user_id')->unsigned();
             $table->json('info');
             $table->integer('mark')->nullable();

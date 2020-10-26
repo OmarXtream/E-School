@@ -82,6 +82,7 @@
 @endsection
 @section('scripts')
 <script>
+
 $(document).on('click', '#Createbtn', function (e) {
     e.preventDefault();
     var formData = new FormData($('#EForm')[0]);
@@ -96,10 +97,14 @@ $(document).on('click', '#Createbtn', function (e) {
             if (data.status == true) {
                 $('#createUsingModal').modal('hide');
                 $('#EForm')[0].reset();
-                new toast({
-                icon: 'success',
-                title: 'تم إرسال الإجابات بنجاح'
-                 });
+        swal.fire({
+            title: 'حسناً',
+            text: 'تم إرسال الإجابات بنجاح',
+            icon: 'success',
+            showConfirmButton: false,
+
+        });
+        setTimeout(function () { location.href = "/exams";}, 2300);
 
 
             }else{

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Exam;
 use Auth;
 use App\Traits\MyFunctions;
+use Illuminate\Support\Facades\Gate;
 
 class ExamController extends Controller
 {
@@ -29,6 +30,7 @@ class ExamController extends Controller
        }
 
        public function show(Exam $exam){
+        Gate::authorize('already:exam',$exam);
 
         return view('student.exam',compact('exam'));
 
@@ -36,8 +38,11 @@ class ExamController extends Controller
      public function store(Request $request){
         $Nreq = $request->except(['_token','examid']);
 
-         $examForm = Exam::findOrFail($request->examid)->info;
-         $searchIn =  json_decode($examForm,true);
+         $examForm = Exam::findOrFail($request->examid);
+
+         Gate::authorize('already:exam',$examForm);
+
+         $searchIn =  json_decode($examForm->info,true);
 
 
 

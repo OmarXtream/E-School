@@ -20,7 +20,11 @@ class CreateAssignmentsTable extends Migration
             $table->tinyInteger('type')->comment('1 => homework, 2 => lecture')->index();
             $table->tinyInteger('level')->comment('three Levels')->index();
             $table->json('files')->nullable();
-            $table->integer('teacher_id')->unsigned();
+            $table->unsignedBigInteger('teacher_id');
+            $table->foreign('teacher_id')
+            ->references('id')->on('teachers')
+            ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

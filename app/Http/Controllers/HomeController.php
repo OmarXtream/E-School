@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Assignment;
 use App\Models\Teacher;
 use Storage;
+use Illuminate\Support\Facades\Gate;
 
 use Auth;
 class HomeController extends Controller
@@ -46,6 +47,8 @@ class HomeController extends Controller
 
 
     public function show(Assignment $assignment){
+        Gate::authorize('same:assignmentLv',$assignment);
+
 
          return view('student.assignment',compact('assignment'));
 

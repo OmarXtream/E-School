@@ -73,6 +73,7 @@ class TeacherController extends Controller
         }
 
         $Teacher->delete();
+
         $response = $this->RespSuccess('تم حذف المعلم بنجاح');
         return response()->json($response);
 

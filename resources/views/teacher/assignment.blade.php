@@ -78,12 +78,12 @@
 
                 <div class="form-row">
                   <div class="col-12 mb-3">
-                    <label for="name">إسم الشرح</label>
+                    <label for="name">العنوان</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="شرح 1" required>
                   </div>
                   <div class="col-12 mb-3">
-                    <label for="des">شرح الدرس</label>
-                    <textarea  name="content" id="content" class="form-control" placeholder="شرح الدرس هنا.."></textarea>
+                    <label for="des">الشرح</label>
+                    <textarea  name="content" id="content" class="form-control" placeholder="شرح الدرس هنا.." required></textarea>
                   </div>
                   <div class="col-12 mb-3">
                     <label for="level">التصنيف</label>

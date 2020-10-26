@@ -7,17 +7,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <p> {{Auth::user()->name}} </p>
+                <a class="nav-link"> {{Auth::user()->name}} </a>
             </li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
 
           <li class="nav-item">
             <a class="nav-link" href="{{route('teacher.index')}}"><i class="fas fa-graduation-cap"></i> المدرسين </a>
@@ -28,6 +19,21 @@
           <li class="nav-item">
           <a class="nav-link" href="{{route('keys.index')}}"><i class="fas fa-key"></i> مفاتيح التسجيل</a>
           </li>
+
+
+          <li class="nav-item">
+
+            <a class="nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                تسجيل الخروج
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+            </li>
+
         </ul>
       </div>
     </div>

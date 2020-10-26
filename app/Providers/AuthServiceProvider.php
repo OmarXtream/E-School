@@ -25,6 +25,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('already:exam',function ($user,$exam){
+        if($user->level === $exam->level) {
+            foreach($exam->answers as $answer) {
+              if($answer->user_id === $user->id) {
+                  return false;
+              }
+           }
+          }
+          return true;
+
+        });
+
+        Gate::define('same:assignmentLv',fn ($user,$assignment) => $user->level === $assignment->level);
+
     }
 }
