@@ -11,13 +11,13 @@
             </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{route('teacher.students')}}"><i class="fas fa-users-class"></i> الطلاب</a>
+            <a class="nav-link" href="{{route('teacher.students')}}"><i class="fal fa-users-class"></i> الطلاب</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">تفاعلات الطلبة</a>
+            <a class="nav-link" href="{{route('Activity')}}"><i class="fad fa-chart-line"></i> تفاعلات الطلبة</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="{{route('teacher.assignments')}}"><i class="fas fa-presentation"></i>  شروحات وواجبات</a>
+          <a class="nav-link" href="{{route('teacher.assignments')}}"><i class="fal fa-presentation"></i>  شروحات وواجبات</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('teacher.exams')}}"><i class="fal fa-ballot-check"></i> إختبارات</a>

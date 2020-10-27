@@ -11,7 +11,7 @@
             </li>
 
           <li class="nav-item">
-          <a class="nav-link" href="{{route('home')}}"><i class="fad fa-presentation"></i> الدروس</a>
+          <a class="nav-link" href="{{route('home')}}"><i class="fal fa-presentation"></i> الدروس</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('homeworks')}}"><i class="fal fa-comment-alt-edit"></i> الواجبات</a>

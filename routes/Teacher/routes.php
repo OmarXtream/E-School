@@ -39,6 +39,9 @@ Route::post('ResultMark','AnswerController@mark')->name('teacher.exam.mark.updat
 
 ######### End Results Section
 
+###### Activity
+Route::get('Activity','AssignmentController@Activity')->name("Activity");
+
 });
 
 

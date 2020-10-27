@@ -30,7 +30,7 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
                     <td id="level-{{$student->id}}">{{$student->level}}</td>
-                    <td>{{$student->answers->sum('grades')}}</td>
+                    <td id="mark-{{$student->id}}">{{$student->answers->sum('mark')}}</td>
 
                     <td id="levelbtn-{{$student->id}}">
                         @if($student->level > 1)
@@ -86,6 +86,7 @@ sendData(' {{route('student.level')}}' ,"id="+id+"&level="+level)
         if (response.tp == 'success') {
             animateCSS('#t-'+id, 'heartBeat').then((message) => {
             $("#level-"+id).html(level);
+            $("#mark-"+id).html('0');
             $("#levelbtn-"+id).html('<p class="text-info"> مُحدث </p>');
             });
 

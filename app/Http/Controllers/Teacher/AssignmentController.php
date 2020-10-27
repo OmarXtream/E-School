@@ -145,4 +145,10 @@ class AssignmentController extends Controller
     }
 
 
+    public function Activity(){
+
+
+        return view('teacher.activity');
+       }
+
 }

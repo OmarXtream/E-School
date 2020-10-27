@@ -31,7 +31,7 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
                     <td id="level-{{$student->id}}">{{$student->level}}</td>
-                    <td>{{$student->answers->sum('grades')}}</td>
+                    <td>{{$student->answers->sum('mark')}}</td>
 
                     <td id="levelbtn-{{$student->id}}">
                         @if($student->level > 1)
@@ -44,7 +44,7 @@
                     </td>
                     </tr>
                     @empty
-                    <p>لا يوجد طلاب مسجلين</p>
+                    <p class="text-muted">لا يوجد طلاب مسجلين</p>
                     @endforelse
                   </tbody>
                 </table>
