@@ -26,28 +26,6 @@
                     @forelse($exams as $exam)
                     <?php
                     $info = json_decode($exam->info, false);
-                    // foreach ($info as $key => $value) {
-                    //     if (Str::startsWith($key, 'text') || Str::startsWith($key, 'radio')|| Str::startsWith($key, 'des')|| Str::startsWith($key, 'input')) {
-                    //         if (!is_array($value)) {
-                    //             print_r($key);
-                    //             echo "<br>";
-                    //             print_r($value);
-                    //             echo "<br> <br> <br>";
-
-                    //         } else {
-                    //             print_r($key);
-                    //             echo "<br>";
-                    //             for ($i=0; $i <= $exam->count+1; $i++) {
-                    //                 print_r( $value[$i] );
-                    //                 echo  " <br> ";
-                    //             }
-                    //         }
-
-                    //     }
-
-
-
-                    // }
                     ?>
                     <tr id="e-{{$exam->id}}">
                         <th scope="row">{{$exam->id}} </th>
@@ -56,7 +34,7 @@
                         <td> <button onclick="DeleteE({{$exam->id}})" class="btn btn-danger text-white"><i class="fa fa-times"></i> حذف </button></td>
                     </tr>
                     @empty
-                    <p> لا يوجد إختبارات حالياً </p>
+                    <p> لا يوجد إختبارات جديده حالياً</p>
                     @endforelse
                   </tbody>
                 </table>

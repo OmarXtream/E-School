@@ -35,6 +35,7 @@ Route::post('ExamDel','ExamController@destroy')->name("Exam.delete");
 Route::get('Results','AnswerController@index')->name("Exam.results");
 Route::get('Result/{exam}-{slug}', 'AnswerController@show')->name('exam.result.show');
 Route::get('Sresult/{exam}','AnswerController@userAnswer')->name('teacher.student.result');
+Route::post('ResultMark','AnswerController@mark')->name('teacher.exam.mark.update');
 
 ######### End Results Section
 

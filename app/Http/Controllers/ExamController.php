@@ -48,16 +48,19 @@ class ExamController extends Controller
 
          $searchIn =  json_decode($examForm->info,true);
 
-
+        $count = 0;
 
         foreach ($Nreq as $key => $value) {
             // $key = inputs = check for these bitches in the orginal exam
             if (!array_key_exists($key, $searchIn)) {
                 $response = $this->RespError(['Error' => ['خطأ لم يتم العثور على الإختبار']]);
                 return response()->json($response);
-                }
+            }else{
+                $count++;
+            }
 
         }
+        if($examForm->count === $count){
        $answer = Answer::Create([
             'exam_id' => $request->examid,
             'info' => json_encode($Nreq),
@@ -76,7 +79,13 @@ class ExamController extends Controller
                 'msg' => 'فشل الحفظ برجاء المحاوله مجددا',
             ]);
 
+        }else{
+            return response()->json([
+                'status' => false,
+                'msg' => 'فضلاً قم بتحديث الصفحة والمحاولة مجدداً',
+            ]);
 
+        }
 
 
     }

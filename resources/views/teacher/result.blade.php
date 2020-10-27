@@ -60,6 +60,28 @@ function searchF(str) {
     }
 }
 
+function grade(id){
+
+var mark = $('#mark').val();
+console.log(mark);
+sendData(' {{route('teacher.exam.mark.update')}}' ,'mark='+mark+'&stdId='+id+'&exam={{$examR->id}}')
+    .then(function(response) {
+        $.each(response.m,function(key,val) {
+            swal.fire({
+            title: response.t,
+            text: val[0],
+            icon: response.tp,
+            showConfirmButton: true,
+            confirmButtonText: 'حسناً'
+        });
+
+            });
+
+
+    });
+
+    }
+
 </script>
 
 @endsection
