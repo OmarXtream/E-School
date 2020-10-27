@@ -30,7 +30,7 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
                     <td id="level-{{$student->id}}">{{$student->level}}</td>
-                    <td> 0</td>
+                    <td>{{$student->grades()}}</td>
 
                     <td id="levelbtn-{{$student->id}}">
                         @if($student->level > 1)

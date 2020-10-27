@@ -52,5 +52,10 @@ class User extends Authenticatable
         return $this->hasMany(Answer::class,'user_id','id');
     }
 
+    public function grades(){
+        return $this->answers->sum('mark');
+
+    }
+
 
 }

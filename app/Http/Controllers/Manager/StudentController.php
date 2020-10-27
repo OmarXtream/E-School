@@ -46,7 +46,7 @@ class StudentController extends Controller
                     $response = $this->RespError(['Error' => ['فشلت عملية التحديث']]);
                     return response()->json($response);
                 }else{
-
+                    $student->answers()->delete();
                 $response = $this->RespSuccess('تم التنفيذ بنجاح');
                 return response()->json($response);
                 }
