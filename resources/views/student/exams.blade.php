@@ -17,7 +17,7 @@
                 <img src="imgs/background.png" class="card-img-top" alt="Banner">
                 <div class="card-body">
                   <h5 class="card-title">{{$info->name}}</h5>
-                  <p class="card-text">الدرجة: {{$info->grade}} </p>
+                <p class="card-text">الدرجة: {{$info->grade}}</p>
                   <a href="{{$exam->url()}}" class="btn btn-primary text-white float-right">بدأ الإختبار</a>
                 </div>
               </div>
@@ -25,6 +25,23 @@
             @empty
             <p> لا يوجد إختبارات حالياً </p>
             @endforelse
+
+
+            @foreach($results as $result)
+            <?php
+            $info = json_decode($result->exam->info, false);
+            ?>
+    <div class="col-md-6 col-lg-4 mb-3">
+              <div class="card" style="width: 100%;">
+                <img src="imgs/background.png" class="card-img-top" alt="Banner">
+                <div class="card-body">
+                  <h5 class="card-title">{{$info->name}}</h5>
+                <p class="card-text">الدرجة: {{ $result->mark ?: "لم يتم التقييم بعد" }} من {{$info->grade}}</p>
+                  <button class="btn btn-success text-white float-right" disabled>تم الإختبار</a>
+                </div>
+              </div>
+            </div>
+            @endforeach
 
 
 

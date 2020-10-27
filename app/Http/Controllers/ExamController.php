@@ -20,13 +20,17 @@ class ExamController extends Controller
 
     public function exams(){
         $userId = Auth::user()->id;
+            // Use this to get only exams that haven't been taken yet
          $exams = Exam::select('id','info')->where(['level' => Auth::user()->level])->whereDoesntHave("answers", function($subQuery) use($userId){
           $subQuery->where("user_id", "=", $userId);
         })->get();
 
+        // get Result with exam info
+           $results = Answer::with(['exam' => function($q){
+            $q->select('id','info');
+        }])->where('user_id',$userId)->get();
 
-
-           return view('student.exams',compact('exams'));
+           return view('student.exams',compact('exams','results'));
        }
 
        public function show(Exam $exam){

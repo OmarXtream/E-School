@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Answer;
+use App\Models\Exam;
 
 class User extends Authenticatable
 {
@@ -54,6 +55,10 @@ class User extends Authenticatable
 
     public function grades(){
         return $this->answers->sum('mark');
+
+    }
+    public function exams(){
+        return $this->hasManyThrough(Answer::class,Exam::class,'id','exam_id');
 
     }
 
