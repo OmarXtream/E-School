@@ -19,7 +19,7 @@ class StudentController extends Controller
 
 
     public function index(){
-        $students = User::get();
+        $students = User::with('answers')->get();
         return view('manager.students',compact('students'));
     }
 

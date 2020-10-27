@@ -31,7 +31,7 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
                     <td id="level-{{$student->id}}">{{$student->level}}</td>
-                    <td>{{$student->grades()}}</td>
+                    <td>{{$student->answers->sum('grades')}}</td>
 
                     <td id="levelbtn-{{$student->id}}">
                         @if($student->level > 1)

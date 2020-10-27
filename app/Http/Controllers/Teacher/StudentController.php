@@ -19,7 +19,7 @@ class StudentController extends Controller
     }
 
     public function index(){
-        $students = User::where('level',Auth::user()->level)->get();
+        $students = User::with('answers')->where('level',Auth::user()->level)->get();
         return view('teacher.home',compact('students'));
     }
 
