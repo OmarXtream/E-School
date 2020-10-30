@@ -8,7 +8,8 @@ use Illuminate\Support\Str;
 
 use App\Models\Teacher;
 use App\Models\Activity;
-
+use App\Models\User;
+use Auth;
 class Assignment extends Model
 {
     use HasFactory;
@@ -37,5 +38,10 @@ class Assignment extends Model
         return $this->hasMany(Activity::class);
 
     }
+    public function InActiveStudents(){
+        return User::select('name','id')->whereDoesntHave('activities', function($query) {
+            $query->where('assignment_id',$this->id);
+          })->where('level',Auth::user()->level)->get();
+        }
 
 }

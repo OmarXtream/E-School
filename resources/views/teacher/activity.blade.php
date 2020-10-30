@@ -15,7 +15,7 @@
               <img src="../imgs/background.png" class="card-img-top" alt="Banner">
               <div class="card-body">
               <h5 class="card-title mb-5">{{$assignment->name}}</h5>
-                <button href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#showActivity-{{$assignment->id}}">مشاهدة التفاعل</button>
+                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#showActivity-{{$assignment->id}}">مشاهدة التفاعل</button>
               </div>
             </div>
           </div>
@@ -39,15 +39,23 @@
                 <div class="col-md-6 mb-2">
                   <h6 class="text-success mb-3">الطلبة المتفاعلين</h6>
                   <ol>
-                    <li>إسم طالب 1</li>
-                    <li>إسم طالب 2</li>
+                    @forelse($assignment->activities as $Activity)
+                        <li>{{$Activity->student->name}}</li>
+                    @empty
+                        <h4> لا يوجد </h4>
+                    @endforelse
+
                   </ol>
                 </div>
                 <div class="col-md-6 mb-2">
                   <h6 class="text-danger mb-3">الطلبة غير المتفاعلين</h6>
                   <ol>
-                    <li>إسم طالب 1</li>
-                    <li>إسم طالب 2</li>
+                @forelse($assignment->InActiveStudents() as $InActive)
+                    <li>{{$InActive->name}}</li>
+                @empty
+                    <h4> لا يوجد </h4>
+                @endforelse
+
                   </ol>
                 </div>
               </div>

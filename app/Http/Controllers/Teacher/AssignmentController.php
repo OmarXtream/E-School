@@ -11,6 +11,7 @@ use Auth;
 use Storage;
 use App\Traits\MyFunctions;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use App\Models\User;
 
 class AssignmentController extends Controller
 {
@@ -146,7 +147,14 @@ class AssignmentController extends Controller
 
 
     public function Activity(){
-        $assignments = Assignment::where('level',Auth::user()->level)->get();
+        $assignments = Assignment::with(['activities.student' => function($query) {
+        $query->select('name','id');
+        }])->where('level',Auth::user()->level)->get();
+
+        // $users = User::whereHas('activities', function($q){
+        //     $q->where('', '>=', '2015-01-01 00:00:00');
+        // })->get();
+
 
         return view('teacher.activity',compact('assignments'));
        }
