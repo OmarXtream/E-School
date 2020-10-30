@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 use App\Models\Teacher;
+use App\Models\Activity;
+
 class Assignment extends Model
 {
     use HasFactory;
@@ -30,4 +32,10 @@ class Assignment extends Model
     public function url(){
         return url("/Assignments/{$this->id}-".Str::slug($this->name));
     }
+
+    public function activities(){
+        return $this->hasMany(Activity::class);
+
+    }
+
 }

@@ -9,29 +9,27 @@
           <div class="col-12 mb-3 text-center">
             <h4 class="title" style="border-color: #8B7277">تفاعلات الطلبة</h4>
           </div>
-
+          @forelse($assignments as $assignment)
           <div class="col-md-6 col-lg-4 mb-3">
             <div class="card" style="width: 100%;">
               <img src="../imgs/background.png" class="card-img-top" alt="Banner">
               <div class="card-body">
-                <h5 class="card-title mb-5">إسم الدرس \ الواجب</h5>
-                <button href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#showActivity">مشاهدة التفاعل</button>
+              <h5 class="card-title mb-5">{{$assignment->name}}</h5>
+                <button href="#" class="btn btn-primary float-right" data-toggle="modal" data-target="#showActivity-{{$assignment->id}}">مشاهدة التفاعل</button>
               </div>
             </div>
           </div>
 
 
-        </div>
-      </div>
-    </section>
+
 
 
     <!-- Modal -->
-    <div class="modal fade" id="showActivity" tabindex="-1" role="dialog" aria-labelledby="showActivityTitle" aria-hidden="true">
+    <div class="modal fade" id="showActivity-{{$assignment->id}}" tabindex="-1" role="dialog" aria-labelledby="showActivityTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="showActivityTitle">مشاهدة التفاعلات</h5>
+            <h5 class="modal-title" id="showActivityTitle">مشاهدة التفاعلات - {{$assignment->name}} </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -60,5 +58,18 @@
           </div>
         </div>
       </div>
+
+
+
+
+          @empty
+          <h2> لا يوجد دروس حالياً </h2>
+          @endforelse
+
+        </div>
+      </div>
+    </section>
+
+
 
     @endsection

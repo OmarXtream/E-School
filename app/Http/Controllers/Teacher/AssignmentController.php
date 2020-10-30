@@ -146,9 +146,9 @@ class AssignmentController extends Controller
 
 
     public function Activity(){
+        $assignments = Assignment::where('level',Auth::user()->level)->get();
 
-
-        return view('teacher.activity');
+        return view('teacher.activity',compact('assignments'));
        }
 
 }
