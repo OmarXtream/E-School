@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <!-- other -->
@@ -24,8 +26,8 @@
         <!-- title -->
         <section class="text-center my-5">
           <img src="{{asset('imgs/logo.png')}}" alt="Logo" class="mb-2">
-          <h2 class="mb-4">عنوان رئيسي</h2>
-          <p>بعض النصائح للطلاب وزوار الموقع</p>
+          <h2 class="mb-4">نظام التعليم الإلكتروني</h2>
+          <p>وَقُل رَّبِّ زِدْنِي عِلْمًا</p>
         </section>
       </div>
     </header>

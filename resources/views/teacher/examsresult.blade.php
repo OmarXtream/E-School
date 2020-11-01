@@ -22,7 +22,7 @@
                 </div>
               </div>
               @empty
-            <p> لا يوجد إختبارات حالياً </p>
+            <h5 class="m-auto"> لا يوجد حالياً</h5>
             @endforelse
 
 

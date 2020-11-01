@@ -14,7 +14,7 @@
 
             <div class="col-md-5 mb-3 mx-auto">
               <form>
-                <select name="search" onchange="searchF(this.value)" class="form-control" id="search">
+                <select name="search" onchange="searchF(this.value)" class="form-control js-search" id="search">
                     <option value="" >  إسم الطالب</option>
                 @forelse($examR->answers as $answer)
                 <option value="{{$answer->user->id}}">{{$answer->user->name}}</option>
@@ -81,6 +81,9 @@ sendData(' {{route('teacher.exam.mark.update')}}' ,'mark='+mark+'&stdId='+id+'&e
     });
 
     }
+    $(document).ready(function() {
+    $('.js-search').select2();
+});
 
 </script>
 
