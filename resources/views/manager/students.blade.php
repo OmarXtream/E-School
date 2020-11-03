@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-12 mb-2">
-              <div class="table-responive">
+              <div class="table-responsive">
                 <table class="table table-striped text-center table-hover">
                   <thead>
                     <tr>

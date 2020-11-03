@@ -11,7 +11,7 @@
 
             <div class="col-12 mb-2">
               <button class="text-white btn btn-primary d-inlin-block mb-3" data-toggle="modal" data-target="#createUsingModal"><i class="fas fa-key"></i> إنشاء مفتاح</button>
-              <div class="table-responive">
+              <div class="table-responsive">
                 <table class="table table-striped text-center table-hover">
                   <thead>
                     <tr>
