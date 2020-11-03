@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 ## Teacher Routes
 Route::group(['namespace' => 'Teacher','prefix' => 'teacher'],function(){
 
-    Route::GET('login','loginController@showLoginForm')->name('TeacherLogin');
-    Route::post('login','loginController@login')->name('teacher.login');
+    Route::GET('login','LoginController@showLoginForm')->name('TeacherLogin');
+    Route::post('login','LoginController@login')->name('teacher.login');
 
 
 
